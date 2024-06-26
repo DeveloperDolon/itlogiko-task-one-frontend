@@ -1,5 +1,9 @@
-import Image from "next/image";
+import MyContainer from "./_component/MyContainer/MyContainer";
 
 export default function Home() {
-  return <div>hello world from bangladesh.</div>;
+  return (
+    <MyContainer>
+      <div>Hello world</div>
+    </MyContainer>
+  );
 }
