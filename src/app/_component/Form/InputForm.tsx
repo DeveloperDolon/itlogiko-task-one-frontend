@@ -20,14 +20,14 @@ const InputForm = () => {
   return (
     <div className="md:mt-10 mt-7">
       <form
-        className="grid sm:grid-cols-2 grid-cols-1 md:gap-5 gap-4"
+        className="grid sm:grid-cols-2 grid-cols-1  md:gap-5 gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid md:gap-5 gap-4">
           <div>
             <input
               placeholder="Enter your name"
-              className="md:px-4 px-3 md:py-3 py-2 bg-slate-100 rounded-md"
+              className="md:px-4 px-3 w-full md:py-3 py-2 bg-slate-100 rounded-md"
               type="text"
               {...register("name", { required: "Name is required!" })}
             />
@@ -42,7 +42,7 @@ const InputForm = () => {
           <div>
             <input
               placeholder="Enter your email"
-              className="md:px-4 px-3 md:py-3 py-2 bg-slate-100 rounded-md"
+              className="md:px-4 w-full px-3 md:py-3 py-2 bg-slate-100 rounded-md"
               type="email"
               {...register("email", { required: "Email is required!" })}
             />
@@ -59,7 +59,7 @@ const InputForm = () => {
           <div>
             <input
               placeholder="Enter your phone number"
-              className="md:px-4 px-3 md:py-3 py-2 bg-slate-100 rounded-md"
+              className="md:px-4 w-full px-3 md:py-3 py-2 bg-slate-100 rounded-md"
               type="text"
               {...register("phoneNumber", {
                 required: "Phone number is required!",
@@ -76,7 +76,7 @@ const InputForm = () => {
           <div>
             <input
               placeholder="Enter your address"
-              className="md:px-4 px-3 md:py-3 py-2 bg-slate-100 rounded-md"
+              className="md:px-4 w-full px-3 md:py-3 py-2 bg-slate-100 rounded-md"
               type="text"
               {...register("address", { required: "Address is required!" })}
             />
