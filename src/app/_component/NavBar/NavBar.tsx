@@ -1,6 +1,10 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+  const router = usePathname();
+
   return (
     <div className="bg-yellow-300">
       <div className="flex justify-between items-center max-w-6xl mx-auto md:px-5 px-4">
@@ -9,7 +13,9 @@ const NavBar = () => {
         <ul className="flex gap-4">
           <li className="md:py-4 py-3 ">
             <Link
-              className="duration-100 transition-all hover:border-b border-black"
+              className={`duration-100 transition-all hover:border-b border-black ${
+                router === "/" && "border-b"
+              }`}
               href={"/"}
             >
               Home
@@ -18,7 +24,9 @@ const NavBar = () => {
           <li className="md:py-4 py-3 ">
             <Link
               href={"/dashboard"}
-              className="duration-100 transition-all hover:border-b border-black"
+              className={`duration-100 transition-all hover:border-b border-black ${
+                router === "/dashboard" && "border-b"
+              }`}
             >
               Dashboard
             </Link>

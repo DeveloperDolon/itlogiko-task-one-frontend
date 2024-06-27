@@ -1,0 +1,21 @@
+/* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+.bar-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Optional: just for styling */
+}
+
+/* Hide scrollbar for Firefox */
+.bar-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Show scrollbar on hover for Webkit-based browsers */
+.bar-container:hover::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Show scrollbar on hover for Firefox */
+.bar-container:hover {
+  scrollbar-width: auto;
+}
