@@ -1,5 +1,7 @@
 "use client";
+import { baseURL } from "@/app/_utils/baseUrl";
 import { useForm, SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface Inputs {
   name: string;
@@ -8,14 +10,44 @@ interface Inputs {
   address: string;
   cv: FileList;
 }
+
 const InputForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const loadingToast = toast.loading("Information adding on server....");
+      const formData = new FormData();
+
+      formData.append("name", data?.name);
+      formData.append("email", data?.email);
+      formData.append("phoneNumber", data?.phoneNumber);
+      formData.append("address", data?.address);
+      formData.append("cv", data?.cv[0]);
+
+      const response = await fetch(`${baseURL}/api/application`, {
+        method: "POST",
+        body: formData,
+      });
+
+      // Handle response if necessary
+      const result = await response.json();
+
+      if (result?.success) {
+        toast.success("Successful!", { id: loadingToast });
+        reset();
+      } else {
+        toast.error("Something wrong!", { id: loadingToast });
+      }
+    } catch (err: unknown) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="md:mt-10 mt-7">
