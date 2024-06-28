@@ -1,14 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import MyContainer from "../_component/MyContainer/MyContainer";
 import toast from "react-hot-toast";
 import { baseURL } from "../_utils/baseUrl";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
 
 const page = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
+  const { setToken } = useContext(AuthContext);
+
   const handleLogin = async (data: any) => {
     data.preventDefault();
+
     try {
       const loadingToast = toast.loading("Login....");
 
@@ -29,8 +35,9 @@ const page = () => {
 
       if (result?.success) {
         localStorage.setItem("token", result?.token);
+        setToken(true);
         toast.success("Logged in successful!", { id: loadingToast });
-        redirect("/dashboard");
+        router.push("/dashboard");
       } else {
         toast.error("Something wrong!", { id: loadingToast });
       }

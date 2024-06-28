@@ -1,11 +1,14 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useToken } from "../../../../localstoratge/getTokens";
+import { useContext } from "react";
+import { AuthContext } from "@/app/context/AuthContext";
 
 const NavBar = () => {
   const router = usePathname();
-
-  const isAdminUser = localStorage.getItem("token");
+  const { isAdminUser } = useContext(AuthContext);
 
   return (
     <div className="bg-yellow-300">

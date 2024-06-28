@@ -5,11 +5,13 @@ import Link from "next/link";
 import { LuDownloadCloud } from "react-icons/lu";
 
 const page = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [applicationData, setApplicationData] = useState([]);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    console.log(jwtToken);
+
     const fetchData = async () => {
       const response = await fetch(`${baseURL}/api/application`, {
         method: "GET",
@@ -51,29 +53,29 @@ const page = () => {
                 </tr>
               </thead>
               <tbody className="w-full">
-                {applicationData?.length > 0
-                  ? applicationData?.map((item, idx) => (
-                      <tr
-                        key={item?._id}
-                        className="h-20 text-sm border leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100"
-                      >
-                        <td className="text-center cursor-pointer">
-                          {idx + 1}
-                        </td>
-                        <td className="text-center px-4">{item?.name}</td>
-                        <td className="text-center px-4">{item?.email}</td>
-                        <td className="text-center px-4">
-                          {item?.phoneNumber}
-                        </td>
-                        <td className="text-center px-4">{item?.address}</td>
-                        <td className="text-center pr-4">
-                          <Link href={item?.cv} target="_blank">
-                            <LuDownloadCloud className="md:text-xl text-base" />
-                          </Link>
-                        </td>
-                      </tr>
-                    ))
-                  : "There are no data available!"}
+                {applicationData?.length > 0 ? (
+                  applicationData?.map((item, idx) => (
+                    <tr
+                      key={item?._id}
+                      className="h-20 text-sm border leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100"
+                    >
+                      <td className="text-center cursor-pointer">{idx + 1}</td>
+                      <td className="text-center px-4">{item?.name}</td>
+                      <td className="text-center px-4">{item?.email}</td>
+                      <td className="text-center px-4">{item?.phoneNumber}</td>
+                      <td className="text-center px-4">{item?.address}</td>
+                      <td className="text-center pr-4">
+                        <Link href={item?.cv} target="_blank">
+                          <LuDownloadCloud className="md:text-xl text-base" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td>There are no data available!</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

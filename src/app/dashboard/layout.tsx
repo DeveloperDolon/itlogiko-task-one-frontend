@@ -1,14 +1,22 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 import "./style.css";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-const layout = ({ children }: { children: ReactNode }) => {
-  const isAdmin = localStorage.getItem("token");
+import { AuthContext } from "../context/AuthContext";
 
-  if (!isAdmin) {
-    redirect("/login");
-  }
+const layout = ({ children }: { children: ReactNode }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isAdminUser } = useContext(AuthContext);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (!isAdminUser) {
+      setTimeout(() => {
+        redirect("/login");
+      }, 3000);
+    }
+  }, [isAdminUser]);
 
   return (
     <div className="grid grid-cols-12 ">
