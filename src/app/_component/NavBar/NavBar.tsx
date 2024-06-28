@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 const NavBar = () => {
   const router = usePathname();
 
-  const isAdminUser = localStorage?.getItem("token");
+  const isAdminUser = localStorage.getItem("token");
 
   return (
     <div className="bg-yellow-300">

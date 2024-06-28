@@ -25,12 +25,16 @@ const page = () => {
 
     fetchData();
   }, []);
-  console.log(applicationData);
+
   return (
     <>
       <h1 className=" md:text-4xl sm:text-3xl text-xl font-semibold">
         Welcome to Admin Dashboard!
       </h1>
+
+      <h2 className="md:mt-12 mt-8 md:text-xl text-base font-semibold">
+        View all documents
+      </h2>
 
       <div className="md:mt-24 sm:mt-20 mt-16">
         <div className="w-full sm:px-6">

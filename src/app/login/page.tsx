@@ -4,6 +4,7 @@ import React from "react";
 import MyContainer from "../_component/MyContainer/MyContainer";
 import toast from "react-hot-toast";
 import { baseURL } from "../_utils/baseUrl";
+import { redirect } from "next/navigation";
 
 const page = () => {
   const handleLogin = async (data: any) => {
@@ -27,8 +28,9 @@ const page = () => {
       const result = await response.json();
 
       if (result?.success) {
-        toast.success("Logged in successful!", { id: loadingToast });
         localStorage.setItem("token", result?.token);
+        toast.success("Logged in successful!", { id: loadingToast });
+        redirect("/dashboard");
       } else {
         toast.error("Something wrong!", { id: loadingToast });
       }
