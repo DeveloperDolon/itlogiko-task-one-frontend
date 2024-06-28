@@ -31,6 +31,16 @@ const NavBar = () => {
               Dashboard
             </Link>
           </li>
+          <li className="md:py-4 py-3 ">
+            <Link
+              href={"/login"}
+              className={`duration-100 transition-all hover:border-b border-black ${
+                router === "/login" && "border-b"
+              }`}
+            >
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
