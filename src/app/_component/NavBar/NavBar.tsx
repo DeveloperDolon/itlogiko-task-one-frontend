@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 const NavBar = () => {
   const router = usePathname();
 
+  const isAdminUser = localStorage?.getItem("token");
+
   return (
     <div className="bg-yellow-300">
       <div className="flex justify-between items-center max-w-6xl mx-auto md:px-5 px-4">
@@ -21,26 +23,30 @@ const NavBar = () => {
               Home
             </Link>
           </li>
-          <li className="md:py-4 py-3 ">
-            <Link
-              href={"/dashboard"}
-              className={`duration-100 transition-all hover:border-b border-black ${
-                router === "/dashboard" && "border-b"
-              }`}
-            >
-              Dashboard
-            </Link>
-          </li>
-          <li className="md:py-4 py-3 ">
-            <Link
-              href={"/login"}
-              className={`duration-100 transition-all hover:border-b border-black ${
-                router === "/login" && "border-b"
-              }`}
-            >
-              Admin Login
-            </Link>
-          </li>
+          {isAdminUser && (
+            <li className="md:py-4 py-3 ">
+              <Link
+                href={"/dashboard"}
+                className={`duration-100 transition-all hover:border-b border-black ${
+                  router === "/dashboard" && "border-b"
+                }`}
+              >
+                Dashboard
+              </Link>
+            </li>
+          )}
+          {!isAdminUser && (
+            <li className="md:py-4 py-3 ">
+              <Link
+                href={"/login"}
+                className={`duration-100 transition-all hover:border-b border-black ${
+                  router === "/login" && "border-b"
+                }`}
+              >
+                Admin Login
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>
