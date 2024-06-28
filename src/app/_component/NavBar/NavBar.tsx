@@ -38,7 +38,7 @@ const NavBar = () => {
                 router === "/login" && "border-b"
               }`}
             >
-              Login
+              Admin Login
             </Link>
           </li>
         </ul>
