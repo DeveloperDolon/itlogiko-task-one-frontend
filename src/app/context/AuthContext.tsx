@@ -17,7 +17,7 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
 
   const [adminToken, setToken] = useState(token ? true : false);
 
-  const values = {
+  const values: TContext = {
     name: "dolon",
     isAdminUser: token,
     adminToken,

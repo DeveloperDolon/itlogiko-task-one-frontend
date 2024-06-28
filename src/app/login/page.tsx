@@ -10,7 +10,16 @@ import { AuthContext } from "../context/AuthContext";
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
-  const { setToken } = useContext(AuthContext);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    // Handle the case where context is not available
+    console.error("AuthContext is undefined");
+    return null; // Or a fallback UI
+  }
+
+  const { setToken } = authContext;
 
   const handleLogin = async (data: any) => {
     data.preventDefault();

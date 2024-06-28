@@ -1,14 +1,20 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useToken } from "../../../../localstoratge/getTokens";
 import { useContext } from "react";
-import { AuthContext } from "@/app/context/AuthContext";
+import { AuthContext, TContext } from "@/app/context/AuthContext";
 
 const NavBar = () => {
   const router = usePathname();
-  const { isAdminUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    // Handle the case where context is not available
+    console.error("AuthContext is undefined");
+    return null; // Or a fallback UI
+  }
+
+  const { isAdminUser } = authContext;
 
   return (
     <div className="bg-yellow-300">

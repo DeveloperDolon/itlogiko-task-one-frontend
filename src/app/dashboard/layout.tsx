@@ -7,7 +7,15 @@ import { AuthContext } from "../context/AuthContext";
 
 const layout = ({ children }: { children: ReactNode }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isAdminUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    // Handle the case where context is not available
+    console.error("AuthContext is undefined");
+    return null; // Or a fallback UI
+  }
+
+  const { isAdminUser } = authContext;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
